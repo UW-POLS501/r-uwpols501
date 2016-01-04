@@ -4,12 +4,14 @@
 \alias{create_assignment_skeleton}
 \title{Create Directory Structure for an Assignment}
 \usage{
-create_assignment_skeleton(assignment, netId)
+create_assignment_skeleton(assignment, netId, dir = ".")
 }
 \arguments{
 \item{assignment}{Assignment number}
 
 \item{netId}{Student netID. Example: jarnold}
+
+\item{dir}{Directory in which the assignment will be created}
 }
 \description{
 Create Directory Structure for an Assignment
