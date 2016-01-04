@@ -1,9 +1,12 @@
 Package: uwpols501
 Title: Functions and data for UW POLS/CSSS 501 
 Version: 0.0.0.9000
-Authors@R: person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre"))
+Authors@R: c(person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre")),
+             person("Andreu", "Casas", email = "acasas2@uw.edu", role = c("aut", "cre")))
 Description: Provides functions and data to support POLS/CSSS 501 at the University of Washington.
-Depends: R (>= 3.2.3)
+Depends: R (>= 3.0.0)
+Imports:
+  assertthat
 License: MIT
 URL: https://github.com/UW-POLS501/r-uwpols501
 BugReports:  https://github.com/UW-POLS501/r-uwpols501/issues
