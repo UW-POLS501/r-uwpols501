@@ -6,3 +6,11 @@ sudo: required
 
 r_github_packages:
   - jimhester/lintr
+
+notifications:
+  email:
+    recipients:
+      - jrnold@uw.edu
+      - acasas2@uw.edu
+    on_success: change
+    on_failure: always
