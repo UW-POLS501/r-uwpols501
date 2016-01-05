@@ -5,9 +5,10 @@ Authors@R: c(person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", rol
              person("Andreu", "Casas", email = "acasas2@uw.edu", role = c("aut")))
 Description: Provides functions and data to support POLS/CSSS 501 at the University of Washington.
 Depends: R (>= 3.0.0)
-Imports:
+Imports: 
   assertthat
 License: MIT
 URL: https://github.com/UW-POLS501/r-uwpols501
-BugReports:  https://github.com/UW-POLS501/r-uwpols501/issues
+BugReports: https://github.com/UW-POLS501/r-uwpols501/issues
 LazyData: true
+Suggests: testthat
