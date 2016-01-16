@@ -2,18 +2,21 @@
 % Please edit documentation in R/pols_501.R
 \name{create_assignment_skeleton}
 \alias{create_assignment_skeleton}
-\title{Create Directory Structure for an Assignment}
+\alias{create_project_skeleton}
+\title{Create Directory Structure for Projects}
 \usage{
-create_assignment_skeleton(assignment, netId, dir = ".")
+create_assignment_skeleton(assignment, net_id, dir = ".")
+
+create_project_skeleton(dir = ".")
 }
 \arguments{
 \item{assignment}{Assignment number}
 
-\item{netId}{Student netID. Example: jarnold}
+\item{net_id}{Student netID. Example: jarnold}
 
 \item{dir}{Directory in which the assignment will be created}
 }
 \description{
-Create Directory Structure for an Assignment
+Create Directory Structure for Projects
 }
 
