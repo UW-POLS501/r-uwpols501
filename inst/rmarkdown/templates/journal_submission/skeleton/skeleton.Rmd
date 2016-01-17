@@ -1,0 +1,13 @@
+---
+title: Generic Title
+author: John Doe
+abstract: >-
+  Put your abstract here.
+output: uwpols501::journal_submission
+---
+
+Introduction
+
+# Heading
+
+Text
