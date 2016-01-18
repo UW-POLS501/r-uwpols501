@@ -23,7 +23,7 @@ create_assignment_skeleton <- function(assignment, net_id, dir = ".") {
   main_dir <- file.path(dir, paste0("assignment", assignment, "-", net_id))
   .create_project_dirs(main_dir)
   cat(paste0("Code and data for POLS-501 assignment ", assignment, "\n"),
-             file = file.path(main_dir,"README.md"))
+             file = file.path(main_dir, "README.md"))
   cat(paste("Createted empty project for Assignment",
             assignment, "in", main_dir))
 }
