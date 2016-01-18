@@ -24,7 +24,8 @@ create_assignment_skeleton <- function(assignment, net_id, dir = ".") {
   .create_project_dirs(main_dir)
   cat(paste0("Code and data for POLS-501 assignment ", assignment, "\n"),
              file = file.path(main_dir,"README.md"))
-  cat(paste("Createted empty project for Assignment", assignment, "in", main_dir))
+  cat(paste("Createted empty project for Assignment",
+            assignment, "in", main_dir))
 }
 
 #' @rdname create_assignment_skeleton
