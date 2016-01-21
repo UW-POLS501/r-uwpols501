@@ -1,9 +1,9 @@
 #' @import assertthat
+#' @import plyr
 #' @importFrom devtools add_rstudio_project
 NULL
 
 .create_project_dirs <- function(d) {
-  main_dir <- dir
   dir.create(d)
   dir_names <- c("data", "data-raw", "figures", "output")
   add_rstudio_project(d)
@@ -92,3 +92,9 @@ coalesce <- function(...) {
   },
   list(...))
 }
+
+#' @export
+plyr::revalue
+
+#' @export
+plyr::mapvalues

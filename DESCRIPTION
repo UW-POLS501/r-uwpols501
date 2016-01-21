@@ -12,7 +12,8 @@ Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    devtools
+    devtools,
+    plyr
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/UW-POLS501/r-uwpols501
 BugReports: https://github.com/UW-POLS501/r-uwpols501/issues
