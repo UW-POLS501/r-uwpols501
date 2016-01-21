@@ -93,6 +93,56 @@ coalesce <- function(...) {
   list(...))
 }
 
+
+#' Fill missing values
+#'
+#' @param x vector
+#' @param fill Value to replace missing values with.
+#' @param ... other parameters
+#' @export
+fill_na <- function(x, fill, ...) {
+  UseMethod("fill_na")
+}
+
+#' @export
+fill_na.numeric <- function(x, fill = 0, ...) {
+  fill_na.default(x, fill)
+}
+
+#' @export
+fill_na.integer <- function(x, fill = 0L, ...) {
+  fill_na.default(x, fill)
+}
+
+#' @export
+fill_na.logical <- function(x, fill = FALSE, ...) {
+  fill_na.default(x, fill)
+}
+
+#' @export
+fill_na.character <- function(x, fill = "", ...) {
+  fill_na.default(x, fill)
+}
+
+#' @export
+fill_na.default <- function(x, fill, ...) {
+  x[is.na(x)] <- fill
+  x
+}
+
+#' Replace values with NA
+#'
+#' @param x vector
+#' @param values Values which should be replaced by missing values
+#'
+#' @export
+replace_na <- function(x, values = NULL) {
+  if (length(values)) {
+    x[x %in% values] <- NA
+  }
+  x
+}
+
 #' @export
 plyr::revalue
 
