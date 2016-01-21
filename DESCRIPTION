@@ -2,7 +2,10 @@ Package: uwpols501
 Title: Functions and data for UW POLS/CSSS 501m
 Version: 0.0.0.9000
 Authors@R: c(person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre")),
-             person("Andreu", "Casas", email = "acasas2@uw.edu", role = c("aut")))
+             person("Andreu", "Casas", email = "acasas2@uw.edu", role = c("aut")),
+             person("Winston", "Chang", role = "ctb"),
+             person("Gregor", role = "ctb"),
+             person("mrip", role = "ctb"))
 Description: Provides functions and data to support POLS/CSSS 501 at the
     University of Washington.
 Depends:

@@ -56,3 +56,39 @@ zip_project <- function(use_tar = FALSE) {
   }
   message("Created file ", zipfile)
 }
+
+
+#' Compare vectors with missing values
+#'
+#' Compare two vectors treating \code{NA} like any other value.
+#' If both vectors have an \code{NA} for that element, the function returns \code{TRUE},
+#' if one has an \code{NA} and the other does not, it returns \code{FALSE}.
+#'
+#' @param x,y vectors to compare
+#' @return A logical vector: \code{TRUE} if both vectors have the same value, including
+#' \code{NA}, and \code{FALSE}, if they differ.
+#' @author Winston Chang
+#' @references \url{http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/}
+#' @export
+is_same <- function(x, y) {
+  same <- (x == y) | (is.na(x) & is.na(y))
+  same[is.na(same)] <- FALSE
+  same
+}
+
+
+#' First non-missing element for vectors
+#'
+#' @param ... vectors
+#' @return For each element, the value of the first non \code{NA} element in the
+#' vectors of \code{...}
+#' @author \href{http://stackoverflow.com/users/903061/gregor}{Gregor}, \href{http://stackoverflow.com/users/2588184/mrip}{mrip}
+#' @references \url{http://stackoverflow.com/questions/19253820/}
+coalesce <- function(...) {
+  Reduce(function(x, y) {
+    i <- which(is.na(x))
+    x[i] <- y[i]
+    x
+  },
+  list(...))
+}
