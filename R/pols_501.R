@@ -150,6 +150,8 @@ filter_na_.data.frame <- function(.data, ..., .dots) {
 }
 
 
+
+
 #' Return NA if x == y, and x otherwise
 #'
 #' @param x vector
@@ -162,6 +164,20 @@ filter_na_.data.frame <- function(.data, ..., .dots) {
 #' to peform the inverse operation of \code{\link{coalesce}}.
 #' @export
 naif <- function(x, y) ifelse(x == y, NA, x)
+
+#' Pulls label names from STATA datasets imported to R
+#'
+#' @param dataset An dataframe containing a STATA dataset
+#'    imported to R
+#' @export
+extract_var_info <- function(dataset){
+  variables_info <- NULL
+  for (i in 1:length(dataset)) {
+    cl <- dataset[[i]]
+    variables_info <- c(variables_info, attr(cl, which = "label"))
+  }
+  return(variables_info)
+}
 
 #' @export
 plyr::revalue
