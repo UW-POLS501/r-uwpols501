@@ -114,3 +114,26 @@ plyr::revalue
 
 #' @export
 plyr::mapvalues
+
+#' Plot distributions
+#'
+#'
+plot_pdf <- function(distribution, ..., left, pmin = 0.005, pmax = 0.995,
+         xmin = NULL, xmax = NULL, n = 101) {
+  dfun <- match.fun(sprintf("d%s", distribution))
+  qfun <- match.fun(sprintf("q%s", distribution))
+
+  if (is.null(xmin)) {
+    xmin <- quantile_fun(pmin, ...)
+  }
+  if (is.null(xmax)) {
+    xmax <- quantile_fun(pmax, ...)
+  }
+  .data <-
+    data_frame(x = seq(xmin, xmax, length.out = n),
+               y = dfun(x, ...))
+
+
+
+}
+
