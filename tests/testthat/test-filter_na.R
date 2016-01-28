@@ -28,6 +28,28 @@ test_that("filter_na works with selecting columns arguments", {
   expect_is(df1_filtered, c("tbl_df"))
 })
 
+test_that("filter_na cannot filter NA in groups", {
+  df1 <- data_frame(alpha = c("a", "b", NA, NA, "d"),
+                    bravo = c(1, NA, 2, 3, 3),
+                    charlie = c(1, NA, 3, NA, 4)
+  )
+  df2 <- data_frame(alpha = c("a", NA, "d"),
+                    bravo = c(1, 2, 3),
+                    charlie = c(1, 3, 4))
+  df1_filtered <- filter_na(group_by(df1, alpha))
+  expect_equivalent(df1_filtered, df2)
+  expect_is(df1_filtered, c("tbl_df"))
+})
+
+test_that("filter_na works with one column", {
+  df1 <- data_frame(alpha = c(1, NA, 3, NA))
+  df2 <- data_frame(alpha = c(1, 3))
+  df1_filtered <- filter_na(df1)
+  expect_equivalent(df1_filtered, df2)
+  expect_is(df1_filtered, c("tbl_df"))
+})
+
+
 test_that("filter_na works with data.frame", {
   df1 <- data.frame(alpha = c("a", "b", NA, NA, "d"),
                     bravo = c(1, NA, 2, NA, 3),

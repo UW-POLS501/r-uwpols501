@@ -133,10 +133,14 @@ filter_na_.tbl_df <- function(.data, ..., .dots) {
                        exclude = as.character(groups(.data)))
 
   # replace with Rcpp code
-  keep <- Reduce(function(x, y) {
-    !is.na(x) & !is.na(y)
-  },
-  .data[, vars])
+  keep <- if (length(vars) == 1) {
+    !is.na(.data[[vars]])
+  } else {
+    Reduce(function(x, y) {
+      !is.na(x) & !is.na(y)
+    },
+    .data[, vars])
+  }
   .data[keep, ]
 }
 
