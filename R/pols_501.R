@@ -1,7 +1,12 @@
 #' @import assertthat
-#' @import plyr
+#' @importFrom plyr revalue mapvalues
+#' @import lazyeval
+#' @import dplyr
 #' @importFrom devtools add_rstudio_project
 NULL
+
+# avoid R CMD check warnings
+globalVariables(c("everything"))
 
 .create_project_dirs <- function(d) {
   dir.create(d)
@@ -94,6 +99,51 @@ coalesce <- function(...) {
   list(...))
 }
 
+
+#' Filter rows with missing values
+#'
+#' \code{filter_na()} filters rows with missing (\code{NA}) values.
+#'
+#' @param .data A tbl. Currently only methods for \code{\link{data.frame}} and
+#'   \code{\link{tbl_df}} are provided.
+#' @param ... Comma separated list of unquoted expressions to select variables.
+#'    See \code{\link[dplyr]{select}}.
+#' @param .dots Use \code{filter_na_()} to do standard evaluation. See
+#'    \code{vignette("nse", package = "dplyr")} for details.
+#' @return An object of the same class as tbl.
+#'
+#' @export
+filter_na <- function(.data, ...) {
+  filter_na_(.data, .dots = lazyeval::lazy_dots(...))
+}
+
+#' @rdname filter_na
+#' @export
+filter_na_ <- function(.data, ..., .dots) {
+  UseMethod("filter_na_")
+}
+
+filter_na_.tbl_df <- function(.data, ..., .dots) {
+  dots <- lazyeval::all_dots(.dots, ...)
+
+  if (length(dots) == 0) {
+    dots <- lazyeval::lazy_dots(everything())
+  }
+  vars <- select_vars_(names(.data), dots,
+                       exclude = as.character(groups(.data)))
+
+  # replace with Rcpp code
+  keep <- Reduce(function(x, y) {
+    !is.na(x) & !is.na(y)
+  },
+  .data[ , vars])
+  .data[keep, ]
+}
+
+filter_na_.data.frame <- function(.data, ..., .dots) {
+  dots <- lazyeval::all_dots(.dots, ...)
+  as.data.frame(filter_na_(tbl_df(.data), .dots = dots))
+}
 
 
 #' Return NA if x == y, and x otherwise
