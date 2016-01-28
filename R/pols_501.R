@@ -84,6 +84,7 @@ is_same <- function(x, y) {
 #' vectors of \code{...}
 #' @author \href{http://stackoverflow.com/users/903061/gregor}{Gregor}, \href{http://stackoverflow.com/users/2588184/mrip}{mrip}
 #' @references \url{http://stackoverflow.com/questions/19253820/}
+#' @export
 coalesce <- function(...) {
   Reduce(function(x, y) {
     i <- which(is.na(x))
@@ -142,6 +143,19 @@ replace_na <- function(x, values = NULL) {
   }
   x
 }
+
+#' Return NA if x == y, and x otherwise
+#'
+#' @param x vector
+#' @param y vector
+#' @return vector, with \code{NA} where \code{x == y}, and \code{x} otherwise.
+#'
+#' @details
+#'
+#' This is similar to the SQL function \code{NULLIF}. It can be used
+#' to peform the inverse operation of \code{\link{coalesce}}.
+#' @export
+naif <- function(x, y) ifelse(x == y, NA, x)
 
 #' @export
 plyr::revalue

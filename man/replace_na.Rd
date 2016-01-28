@@ -2,7 +2,7 @@
 % Please edit documentation in R/pols_501.R
 \name{replace_na}
 \alias{replace_na}
-\title{Replace values with missing}
+\title{Replace values with NA}
 \usage{
 replace_na(x, values = NULL)
 }
@@ -12,6 +12,6 @@ replace_na(x, values = NULL)
 \item{values}{Values which should be replaced by missing values}
 }
 \description{
-Replace values with missing
+Replace values with NA
 }
 
