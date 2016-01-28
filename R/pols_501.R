@@ -136,7 +136,7 @@ filter_na_.tbl_df <- function(.data, ..., .dots) {
   keep <- Reduce(function(x, y) {
     !is.na(x) & !is.na(y)
   },
-  .data[ , vars])
+  .data[, vars])
   .data[keep, ]
 }
 
