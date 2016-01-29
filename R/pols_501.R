@@ -11,7 +11,7 @@ globalVariables(c("everything"))
 .create_project_dirs <- function(d) {
   dir.create(d)
   dir_names <- c("data", "data-raw", "figures", "output")
-  add_rstudio_project(d)
+  #add_rstudio_project(d)
   for (dn in dir_names) {
     dir.create(file.path(d, dn))
   }
@@ -24,14 +24,16 @@ globalVariables(c("everything"))
 #' @param dir Directory in which the assignment will be created
 #' @export
 create_assignment_skeleton <- function(assignment, net_id, dir = ".") {
-  assert_that(is.numeric(assignment))
-  main_dir <- file.path(dir, paste0("assignment", assignment, "-", net_id))
+  assert_that(is.numeric(assignment) | is.character(assignment))
+  main_dir <- file.path(dir, paste0("assignment-", assignment, "-", net_id))
   .create_project_dirs(main_dir)
   cat(paste0("Code and data for POLS-501 assignment ", assignment, "\n"),
              file = file.path(main_dir, "README.md"))
   cat(paste("Createted empty project for Assignment",
             assignment, "in", main_dir))
 }
+
+
 
 #' @rdname create_assignment_skeleton
 #' @export
