@@ -2,7 +2,8 @@
 
 export(coalesce)
 export(create_assignment_skeleton)
-export(create_project_skeleton)
+export(create_research_project_skeleton)
+export(create_rproject_skeleton)
 export(extract_var_info)
 export(filter_na)
 export(filter_na_)
