@@ -1,12 +1,17 @@
 #' @import assertthat
-#' @import plyr
+#' @importFrom plyr revalue mapvalues
+#' @import lazyeval
+#' @import dplyr
 #' @importFrom devtools add_rstudio_project
 NULL
+
+# avoid R CMD check warnings
+globalVariables(c("everything"))
 
 .create_project_dirs <- function(d) {
   dir.create(d)
   dir_names <- c("data", "data-raw", "figures", "output")
-  add_rstudio_project(d)
+  #add_rstudio_project(d)
   for (dn in dir_names) {
     dir.create(file.path(d, dn))
   }
@@ -19,14 +24,16 @@ NULL
 #' @param dir Directory in which the assignment will be created
 #' @export
 create_assignment_skeleton <- function(assignment, net_id, dir = ".") {
-  assert_that(is.numeric(assignment))
-  main_dir <- file.path(dir, paste0("assignment", assignment, "-", net_id))
+  assert_that(is.numeric(assignment) | is.character(assignment))
+  main_dir <- file.path(dir, paste0("assignment-", assignment, "-", net_id))
   .create_project_dirs(main_dir)
   cat(paste0("Code and data for POLS-501 assignment ", assignment, "\n"),
              file = file.path(main_dir, "README.md"))
   cat(paste("Createted empty project for Assignment",
             assignment, "in", main_dir))
 }
+
+
 
 #' @rdname create_assignment_skeleton
 #' @export
@@ -95,6 +102,57 @@ coalesce <- function(...) {
 }
 
 
+#' Filter rows with missing values
+#'
+#' \code{filter_na()} filters rows with missing (\code{NA}) values.
+#'
+#' @param .data A tbl. Currently only methods for \code{\link{data.frame}} and
+#'   \code{\link{tbl_df}} are provided.
+#' @param ... Comma separated list of unquoted expressions to select variables.
+#'    See \code{\link[dplyr]{select}}.
+#' @param .dots Use \code{filter_na_()} to do standard evaluation. See
+#'    \code{vignette("nse", package = "dplyr")} for details.
+#' @return An object of the same class as tbl.
+#'
+#' @export
+filter_na <- function(.data, ...) {
+  filter_na_(.data, .dots = lazyeval::lazy_dots(...))
+}
+
+#' @rdname filter_na
+#' @export
+filter_na_ <- function(.data, ..., .dots) {
+  UseMethod("filter_na_")
+}
+
+filter_na_.tbl_df <- function(.data, ..., .dots) {
+  dots <- lazyeval::all_dots(.dots, ...)
+
+  if (length(dots) == 0) {
+    dots <- lazyeval::lazy_dots(everything())
+  }
+  vars <- select_vars_(names(.data), dots,
+                       exclude = as.character(groups(.data)))
+
+  # replace with Rcpp code
+  keep <- if (length(vars) == 1) {
+    !is.na(.data[[vars]])
+  } else {
+    Reduce(function(x, y) {
+      !is.na(x) & !is.na(y)
+    },
+    .data[, vars])
+  }
+  .data[keep, ]
+}
+
+filter_na_.data.frame <- function(.data, ..., .dots) {
+  dots <- lazyeval::all_dots(.dots, ...)
+  as.data.frame(filter_na_(tbl_df(.data), .dots = dots))
+}
+
+
+
 
 #' Return NA if x == y, and x otherwise
 #'
@@ -108,6 +166,20 @@ coalesce <- function(...) {
 #' to peform the inverse operation of \code{\link{coalesce}}.
 #' @export
 naif <- function(x, y) ifelse(x == y, NA, x)
+
+#' Pulls label names from STATA datasets imported to R
+#'
+#' @param dataset An dataframe containing a STATA dataset
+#'    imported to R
+#' @export
+extract_var_info <- function(dataset){
+  variables_info <- NULL
+  for (i in 1:length(dataset)) {
+    cl <- dataset[[i]]
+    variables_info <- c(variables_info, attr(cl, which = "label"))
+  }
+  return(variables_info)
+}
 
 #' @export
 plyr::revalue
