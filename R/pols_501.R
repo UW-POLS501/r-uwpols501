@@ -162,21 +162,6 @@ filter_na_.data.frame <- function(.data, ..., .dots) {
 }
 
 
-
-
-#' Return NA if x == y, and x otherwise
-#'
-#' @param x vector
-#' @param y vector
-#' @return vector, with \code{NA} where \code{x == y}, and \code{x} otherwise.
-#'
-#' @details
-#'
-#' This is similar to the SQL function \code{NULLIF}. It can be used
-#' to peform the inverse operation of \code{\link{coalesce}}.
-#' @export
-naif <- function(x, y) ifelse(x == y, NA, x)
-
 #' Pulls label names from STATA datasets imported to R
 #'
 #' @param dataset An dataframe containing a STATA dataset
