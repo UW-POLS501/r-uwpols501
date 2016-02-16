@@ -181,3 +181,31 @@ plyr::revalue
 
 #' @export
 plyr::mapvalues
+
+final_paper <- function(fig_width = 4,
+                        fig_height = 2.5,
+                        fig_crop = TRUE,
+                        dev = "pdf",
+                        highlight = "default",
+                        keep_tex = FALSE,
+                        includes = NULL,
+                        md_extensions = NULL,
+                        pandoc_args = NULL) {
+  if (identical(highlight, "default"))
+    highlight <- "pygments"
+  template <- system.file("rmarkdown/templates/tufte_handout/resources/tufte-handout.tex",
+                          package = "rmarkdown")
+  # format <- rmarkdown::pdf_document(fig_width = fig_width,
+  #                                   fig_height = fig_height,
+  #                                   fig_crop = fig_crop,
+  #                                   dev = dev,
+  #                                   highlight = highlight,
+  #                                   template = template,
+  #                                   keep_tex = keep_tex,
+  #                                   citation_package = citation_package,
+  #                                   latex_engine = "pdflatex",
+  #                                   includes = includes,
+  #                                   md_extensions = md_extensions,
+  #                                   pandoc_args = pandoc_args)
+
+}
