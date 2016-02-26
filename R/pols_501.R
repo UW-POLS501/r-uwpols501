@@ -193,7 +193,9 @@ final_paper <- function(fig_width = 4,
                         pandoc_args = NULL) {
   if (identical(highlight, "default"))
     highlight <- "pygments"
-  template <- system.file("rmarkdown/templates/tufte_handout/resources/tufte-handout.tex",
+  template <- system.file(file.path("rmarkdown",
+                                    "templates", "tufte_handout", "resources",
+                                    "tufte-handout.tex"),
                           package = "rmarkdown")
   # format <- rmarkdown::pdf_document(fig_width = fig_width,
   #                                   fig_height = fig_height,
