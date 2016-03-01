@@ -34,10 +34,3 @@
 #'  Democracies Redistribute More Than Others.`` \emph{American Political Science Review}.
 #'
 "iver"
-
-#' Prestige of Canadian Occupations
-#'
-#' @format The Prestige data frame has 102 rows and 6 columns. The observations are occupations.
-#' 
-#' @source car package.
-"Prestige"
