@@ -11,12 +11,11 @@
  \item{income}{Average income of incumbents, dollars, in 1971.}
  \item{women}{Percentage of incumbents who are women.}
  \item{prestige}{Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s.}
- \item{census}{Canadian Census occupational code}
- \item{type}{Type of occupation. A factor with levels (note: out of order): bc, Blue Collar; prof, Professional, 
- Managerial, and Technical; wc, White Collar.}
+ \item{census}{Canadian Census occupational code.}
+ \item{type}{Type of occupation. A factor with levels (note: out of order): bc, Blue Collar; prof, Professional, Managerial, and Technical; wc, White Collar.}
 }}
 \source{
-car package.
+car package
 }
 \usage{
 Prestige
