@@ -46,13 +46,9 @@
 #'  \item{women}{Percentage of incumbents who are women.}
 #'  \item{prestige}{Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s.}
 #'  \item{census}{Canadian Census occupational code}
-#'  \item{type}{Type of occupation. A factor with levels (note: out of order): bc, Blue Collar; prof, Professional, Managerial, and Technical; wc, White Collar.}
+#'  \item{type}{Type of occupation. A factor with levels (note: out of order): bc, Blue Collar; prof, Professional, 
+#'  Managerial, and Technical; wc, White Collar.}
 #' }
 #'
 #' @source car package.
-#' @references
-#'  Fox, J. (2008).
-#'   \emph{Applied Regression Analysis and Generalized Linear Models}, Second Edition. Sage
-#'  Fox, J. and Weisberg, S. (2011).
-#'   \emph{An R Companion to Applied Regression}, Second Edition. Sage
 "Prestige"
