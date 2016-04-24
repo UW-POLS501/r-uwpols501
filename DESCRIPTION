@@ -1,6 +1,6 @@
 Package: uwpols501
 Title: Functions and data for UW POLS/CSSS 501m
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre")),
              person("Andreu", "Casas", email = "acasas2@uw.edu", role = c("aut")),
              person("Winston", "Chang", role = "ctb"),
@@ -12,7 +12,6 @@ Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    devtools,
     dplyr,
     lazyeval,
     plyr
@@ -23,4 +22,4 @@ LazyData: true
 Suggests:
     testthat,
     lintr
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
